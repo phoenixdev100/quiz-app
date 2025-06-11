@@ -1,0 +1,255 @@
+.app {
+  max-width: 900px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure content stays within boundaries */
+.app > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.app h1 {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.difficulty-selector {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-selector label {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.difficulty-selector select {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  width: 220px;
+  background-color: var(--card-bg);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.difficulty-selector select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.start-button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2), 0 2px 4px -1px rgba(99, 102, 241, 0.1);
+  transition: all 0.2s;
+}
+
+.start-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading styles */
+.loading-container {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(99, 102, 241, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 50px;
+  transition: width 0.3s ease;
+}
+
+.loading-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Error styles */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 2rem;
+  padding: 2rem;
+  background-color: rgba(239, 68, 68, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid var(--danger);
+  width: 80%;
+  max-width: 500px;
+}
+
+.error-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .app {
+    max-width: 95%;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    margin: 1.5rem auto;
+    padding: 2rem;
+  }
+  
+  .app h1 {
+    font-size: 2rem;
+  }
+  
+  .loading-container {
+    width: 90%;
+  }
+  
+  .error-container {
+    padding: 1.5rem;
+    width: 90%;
+  }
+  
+  .copyright {
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .app {
+    margin: 1rem auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .app h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .difficulty-selector {
+    margin-bottom: 1.5rem;
+  }
+  
+  .difficulty-selector select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+  }
+  
+  .start-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .error-container {
+    padding: 1rem;
+  }
+  
+  .error-message {
+    font-size: 0.95rem;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.copyright {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  opacity: 0.8;
+} 
